@@ -12,23 +12,20 @@ import string # For String Template
 myinputfilelocation = 'iCarolExportLarge.csv' # Get File Input Path
 myoutputfilelocation = 'iCarolExportLargeOutput.csv' # Get File Output Path
 myinputfile = open(myinputfilelocation, 'rb')
-myoutputfile = open(myoutputfilelocation, 'wb')
+with open(myoutputfilelocation, 'wb') as myoutputfile:
+    # Skip lines until you reach the header
+    myinputfile.next() #Skip first row
+    myinputfile.next() #Skip second row, header on third row
 
-# Skip lines until you reach the header
-myinputfile.next() #Skip first row
-myinputfile.next() #Skip second row, header on third row
-
-# Take inputfile, read through all, clean out quotes (since some of the raw data has quotes inside), then write to output file
-for line in myinputfile:
-    try:
-        newline = unicode(line, errors='replace')
-    except UnicodeDecodeError:
-        print("Decode Error")
-    newline = newline.encode('latin-1', errors='replace')
-    myoutputfile.write(newline)
-myinputfile.close()
-myoutputfile.close()
-
+    # Take inputfile, read through all, clean out quotes (since some of the raw data has quotes inside), then write to output file
+    for line in myinputfile:
+        try:
+            newline = unicode(line, errors='replace')
+        except UnicodeDecodeError:
+            print("Decode Error")
+        newline = newline.encode('latin-1', errors='replace')
+        myoutputfile.write(newline)
+    myinputfile.close()
 """List columns"""
 v0 = u"CallReportNum"
 v1 = u"ReportVersion"
@@ -81,7 +78,7 @@ v46 = u"Referrals - Type of Referral Provided"
 mylist = [v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, v15, v16, v17, v18, v19, v20, v21, v22, v23, v24, v25, v26, v27, v28, v29, v30, v31, v32, v33, v34, v35, v36, v37, v38, v39, v40, v41, v42, v43, v44, v45, v46]
 
 # Get new output file, then read the csv into a pandas data frame
-mynewoutputfile = 'iCarolExportLargeOutput.csv' 
+mynewoutputfile = 'iCarolExportLargeOutput.csv'
 mydataframe = pandas.io.parsers.read_table(mynewoutputfile, sep=',', quotechar='"', header=0, index_col=0, error_bad_lines=True, warn_bad_lines=True, encoding='latin-1') # , encoding='utf-8', encoding='latin-1', warn_bad_lines=False, names=['CallReportNum','ReportVersion', 'CallDateAndTimeStart'], index_col=False, escapechar='\n', names=['CallReportNum','ReportVersion', 'CallDateAndTimeStart'], index_col=False, escapechar='\n'
 
 # Get back clean data frame consisting of only the columns we want

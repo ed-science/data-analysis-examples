@@ -4,6 +4,7 @@
     Note: Runs fine on Pandas version 0.14, but not on .15
  """
 
+
 import requests
 import json
 import pdb
@@ -25,10 +26,10 @@ data = {}
 # Initialize Client for making API requests
 client = requests.session()
 client.headers = {
-    "Authorization": "bearer %s" % ACCESS_TOKEN,
-    "Content-Type": "application/json"
-    #"encoding": "utf-8"
-    }
+    "Authorization": f"bearer {ACCESS_TOKEN}",
+    "Content-Type": "application/json",
+}
+
 client.params = {
     "api_key": "<insert api_key>"
     }
@@ -50,8 +51,7 @@ def pandas_survey_list():
 
 def get_respondent_list_json(survey_id):
     """ Returns a list of respondents to the survey into JSON """
-    RESPONDENT_LIST_ENDPOINT = "/v2/surveys/get_respondent_list"
-    uri = "%s%s" % (HOST, RESPONDENT_LIST_ENDPOINT)
+    uri = f"{HOST}/v2/surveys/get_respondent_list"
     data['survey_id'] = survey_id
     response = client.post(uri, data=json.dumps(data))
     response_json = response.text
@@ -68,17 +68,13 @@ def convert_respondent_list(location):
     loaded_data = json.load(json_data)
     respondent_data = loaded_data['data']['respondents']
     respondent_df = pandas.io.json.json_normalize(respondent_data)
-    #print respondent_df
-    user_list = respondent_df['respondent_id'].values.tolist()
-
-    return user_list
+    return respondent_df['respondent_id'].values.tolist()
 
 
 def get_responses(survey_id, respondent_ids):
     """ Returns a list of responses to the survey """
 
-    RESPONSES_ENDPOINT = "/v2/surveys/get_responses"
-    uri = "%s%s" % (HOST, RESPONSES_ENDPOINT)
+    uri = f"{HOST}/v2/surveys/get_responses"
     data['survey_id'] = survey_id
     data['respondent_ids'] = respondent_ids
     response = client.post(uri, data=json.dumps(data))
@@ -91,8 +87,7 @@ def get_responses(survey_id, respondent_ids):
 
 def get_survey_details(survey_id):
     """ Returns a survey's metadata (e.g. questions) based on survey_id """
-    SURVEY_DETAILS_ENDPOINT = "/v2/surveys/get_survey_details"
-    uri = "%s%s" % (HOST, SURVEY_DETAILS_ENDPOINT)
+    uri = f"{HOST}/v2/surveys/get_survey_details"
     data['survey_id'] = survey_id  # {'session_id': '55029506'}
     #print type(data) # <type 'data'>
     #print type(json.dumps(data))  # <type 'str'>

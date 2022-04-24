@@ -15,14 +15,14 @@
 def multiples(number):
     total=0
     index=0
-    while(index<number):
+    while (index<number):
         if((index%3==0) and (index%5==0)):
             total+=index
         elif (index%3==0):
             total+=index
         elif (index%5==0):
             total+=index
-        index=index+1
+        index += 1
     return total
 
 if __name__ == "__main__":

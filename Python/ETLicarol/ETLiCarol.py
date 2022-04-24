@@ -3,6 +3,7 @@
 # pylint: disable=I0011,C0103,W0142
 
 """Import Modules"""
+
 ### Standard Library Modules
 import csv # For CSV
 import os # For filepaths
@@ -31,8 +32,8 @@ import settings
 #cleandirectory = str(r'C:\iCarolFTPFiles\Clean')
 
 # Mac
-originaldirectory = str(r'/Users/williamliu/Documents/Lifeline/Original')
-cleandirectory = str(r'/Users/williamliu/Documents/Lifeline/Clean')
+originaldirectory = '/Users/williamliu/Documents/Lifeline/Original'
+cleandirectory = '/Users/williamliu/Documents/Lifeline/Clean'
 
 os.chdir(originaldirectory) #Change Local directory (where files go to)
 myfilename = 'iCarolExportClean.csv'

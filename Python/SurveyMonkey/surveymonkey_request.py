@@ -22,6 +22,7 @@
 
  """
 
+
 import requests
 import json
 #import simplejson as json
@@ -38,11 +39,10 @@ data = {}
 # Initialize Client for making API requests
 client = requests.session()
 client.headers = {
-    "Authorization": "bearer %s" % ACCESS_TOKEN,
-    "Content-Type": "application/json"
-    #"encoding": "utf-8"
-    #"encoding": "ascii"
-    }
+    "Authorization": f"bearer {ACCESS_TOKEN}",
+    "Content-Type": "application/json",
+}
+
 client.params = {
     "api_key": "<insert api_key>"
     }
@@ -95,8 +95,7 @@ def get_survey_list_all():
 
 def get_survey_details(survey_id):
     """ Returns a given survey's metadata (e.g. questions) based on survey_id """
-    SURVEY_DETAILS_ENDPOINT = "/v2/surveys/get_survey_details"
-    uri = "%s%s" % (HOST, SURVEY_DETAILS_ENDPOINT)
+    uri = f"{HOST}/v2/surveys/get_survey_details"
     data['survey_id'] = survey_id  # {'session_id': '55029506'}
     #print type(data) # <type 'data'>
     #print type(json.dumps(data))  # <type 'str'>
@@ -109,8 +108,7 @@ def get_survey_details(survey_id):
 
 def get_respondent_list(survey_id):
     """ Returns a list of respondents to the survey """
-    RESPONDENT_LIST_ENDPOINT = "/v2/surveys/get_respondent_list"
-    uri = "%s%s" % (HOST, RESPONDENT_LIST_ENDPOINT)
+    uri = f"{HOST}/v2/surveys/get_respondent_list"
     data['survey_id'] = survey_id
     response = client.post(uri, data=json.dumps(data))
     response_json = response.json()
@@ -120,8 +118,7 @@ def get_respondent_list(survey_id):
 
 def get_responses(survey_id, respondent_ids):
     """ Returns a list of responses to the survey """
-    RESPONSES_ENDPOINT = "/v2/surveys/get_responses"
-    uri = "%s%s" % (HOST, RESPONSES_ENDPOINT)
+    uri = f"{HOST}/v2/surveys/get_responses"
     data['survey_id'] = survey_id
     data['respondent_ids'] = respondent_ids
     response = client.post(uri, data=json.dumps(data))

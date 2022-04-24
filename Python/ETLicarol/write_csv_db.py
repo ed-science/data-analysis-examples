@@ -29,7 +29,7 @@ def write_file(myfilename):
 
 if __name__ == "__main__":
 
-    mydirectory = str(r"C:\Users\wliu\Desktop")
+    mydirectory = "C:\\Users\\wliu\\Desktop"
     os.chdir(mydirectory)  # Change to directory
     myfilename = 'chatsrouted.csv' # Filename
 
