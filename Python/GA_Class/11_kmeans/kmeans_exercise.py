@@ -67,7 +67,7 @@ def k_means(X, n_clusters,
     best_labels, best_score, best_centers = None, np.infty, None
 
     # We are going to `n_init` random starts and return the best one
-    for it in range(n_init):
+    for _ in range(n_init):
         # run a k-means once
         labels, score, centers = _kmeans_single(X, n_clusters, max_iter=max_iter)
         # determine if these results are the best so far
@@ -111,17 +111,12 @@ def _kmeans_single(X, n_clusters, max_iter=10):
     # init
     centers = _init_random_centroids(X, n_clusters)
 
-    for i in range(max_iter):
+    for _ in range(max_iter):
         # Figure out the labels, given the centers
         labels, score = _compute_labels_and_score(X, centers)
 
         # Recompute the centers given the labels and data
         centers = _recompute_centers(X, labels, n_clusters)
-
-        # Save the best run
-        #TODO: IMPLEMENT
-        # Is this run better than the last run?
-            # If so, update best_centers, best_labels, best_score
 
         if score < best_score:
             best_centers = centers
@@ -250,6 +245,4 @@ def _init_random_centroids(X, k, random_state=None):
     n_samples = X.shape[0]
 
     seeds = random_state.permutation(n_samples)[:k]
-    centers = X[seeds]
-
-    return centers
+    return X[seeds]

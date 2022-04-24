@@ -2,6 +2,7 @@
     Program to calculate projected completion date for
     projects (with source being a csv file)
 """
+
 # pylint: disable=I0001,C0103,W0141
 
 
@@ -12,7 +13,7 @@ import pandas  # For dataframes
 from pandas.tseries.offsets import *  # For Bday (Business Days) utility
 
 # Specify directories
-ORIGINAL_DIRECTORY = str(r'C:\Users\wliu\Desktop\Spiceworks\Original')
+ORIGINAL_DIRECTORY = 'C:\\Users\\wliu\\Desktop\\Spiceworks\\Original'
 os.chdir(ORIGINAL_DIRECTORY)  # Change Local directory (where files go to)
 FILENAME = 'myexport.csv'
 
@@ -34,9 +35,7 @@ def estimate_today():
     """<Take next highest ranked item and add 'Hours Remaining'
      to a new column 'Estimated Date'>"""
 
-    #today = (time.strftime("%m/%d/%Y"))
-    now = datetime.datetime.now()
-    return now
+    return datetime.datetime.now()
 
 
 def write_dataframe_to_csv(mydataframe, name):

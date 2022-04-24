@@ -1,4 +1,5 @@
 """ How to import iCarol chats into SQL Table """
+
 # -*- coding: utf-8 -*-
 # pylint: disable=I0011,C0103,W0142
 
@@ -19,7 +20,7 @@ import sqlalchemy
 #myfinalfilename = 'iCarolExportFinal.csv'
 
 # Will's Mac Settings
-mydirectory = str(r'/Users/williamliu/Dropbox/GA/OriginalData')
+mydirectory = '/Users/williamliu/Dropbox/GA/OriginalData'
 myfilename = 'iCarol_Surveys.csv'
 myoutputfilename = 'ic_survey_clean.csv'
 #myfinalfilename = 'iCarol_Surveys_Final.csv'

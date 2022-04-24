@@ -19,13 +19,12 @@ def fibonacci(number):
     index=0
     total=0
     mylist=[1,2] #start off the list
-    while(mylist[index]<number):
+    while (mylist[index]<number):
         if(mylist[index]%2==0): #check if even, if so, then add to the sum
             total = total + mylist[index]
-        if(mylist[index]<number):
-            index = index + 1
-            mynewvalue = mylist[index] + mylist[index-1]
-            mylist.append(mynewvalue)
+        index += 1
+        mynewvalue = mylist[index] + mylist[index-1]
+        mylist.append(mynewvalue)
 
     return total
 

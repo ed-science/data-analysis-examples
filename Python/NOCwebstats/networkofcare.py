@@ -70,10 +70,9 @@ def open_link(mylink):
     ## You are now logged in!
 
 def write_data(mylocation, mylink):
-    text_file = open(mylocation, "w")
-    r = br.open(mylink).read()
-    text_file.write(r)
-    text_file.close()
+    with open(mylocation, "w") as text_file:
+        r = br.open(mylink).read()
+        text_file.write(r)
 
 if __name__ == '__main__':
 

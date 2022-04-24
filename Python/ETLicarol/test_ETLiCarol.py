@@ -7,7 +7,7 @@ import unittest
 import pandas
 
 ### Initialize File
-originaldirectory = str('C:\iCarolFTPFiles\Original')
+originaldirectory = 'C:\\iCarolFTPFiles\\Original'
 os.chdir(originaldirectory) #Change Local directory (where files go to)
 myfilename= 'iCarolExportTest.csv'
 myfullfilepath = os.path.join(originaldirectory, myfilename)

@@ -94,9 +94,7 @@ class ftrl_proximal(object):
         yield 0
 
         # then yield the normal indices
-        for index in x:
-            yield index
-
+        yield from x
         # now yield interactions (if applicable)
         if self.interaction:
             D = self.D
@@ -106,7 +104,7 @@ class ftrl_proximal(object):
             for i in xrange(L):
                 for j in xrange(i+1, L):
                     # one-hot encode interactions with hash trick
-                    yield abs(hash(str(x[i]) + '_' + str(x[j]))) % D
+                    yield abs(hash(f'{str(x[i])}_{str(x[j])}')) % D
 
     def predict(self, x):
         ''' Get probability estimation on x
@@ -237,7 +235,7 @@ def data(path, D):
             value = row[key]
 
             # one-hot encode everything with hash trick
-            index = abs(hash(key + '_' + value)) % D
+            index = abs(hash(f'{key}_{value}')) % D
             x.append(index)
 
         yield t, date, ID, x, y

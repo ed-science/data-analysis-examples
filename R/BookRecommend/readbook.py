@@ -43,14 +43,13 @@ numcolumns = 3  # Set Number of Columns in CSV File
 ## Define function to clean data, input file (reading), output file (writing)
 def clean_data(myinputfile, myoutputfile):
     inf = open(myinputfile, 'r')
-    outf = open(myoutputfile, 'wb')
-    
-    for line in inf: # go through each line in the input file
-        splitline = line.split(';') # Split the data into columns based on a delimiter, splitline is a list
-        if len(splitline)==numcolumns-1: # Check if the length of the list is the number of columns.  Keep in mind lists go from 0, 1, 2, etc.  See below about how strings/lists is treated
-            continue
-        ## Below describes how a string is treated in Python
-        ''' Suppose a string s contained 'Hello'
+    with open(myoutputfile, 'wb') as outf:
+        for line in inf: # go through each line in the input file
+            splitline = line.split(';') # Split the data into columns based on a delimiter, splitline is a list
+            if len(splitline)==numcolumns-1: # Check if the length of the list is the number of columns.  Keep in mind lists go from 0, 1, 2, etc.  See below about how strings/lists is treated
+                continue
+            ## Below describes how a string is treated in Python
+            ''' Suppose a string s contained 'Hello'
 
             H  e  l  l  o
             0  1  2  3  4
@@ -71,18 +70,17 @@ def clean_data(myinputfile, myoutputfile):
             s[-3:]='llo'    # starting with the 3rd char from the end and extending to the end of the string
         '''
 
-        ## Join the three splitlines using delimiter ';'.  If after X columns there isn't a newline, we add one
-        ## Remove "
-        ## We then write the line to the output file
-        newline = (';').join(splitline[:numcolumns]).replace('"', '')
-        if newline[-1: ] != '\n':
-            newline += '\n'
-        outf.write(newline)
-           
+            ## Join the three splitlines using delimiter ';'.  If after X columns there isn't a newline, we add one
+            ## Remove "
+            ## We then write the line to the output file
+            newline = (';').join(splitline[:numcolumns]).replace('"', '')
+            if newline[-1: ] != '\n':
+                newline += '\n'
+            outf.write(newline)
 
-    ## Close the input file and the output file
-    inf.close()
-    outf.close()
+
+        ## Close the input file and the output file
+        inf.close()
 
 ## Run the custom defined clean_data function (see above) to clean data
 clean_data(myinputfile, myoutputfile)

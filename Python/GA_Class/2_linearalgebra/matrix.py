@@ -64,10 +64,10 @@ def matrix_vector(matrix, vector):
 def matrix_matrix(matrix1, matrix2):
     """ Multiply 2 matrix, transpose matrix2, then vector * matrix formula """
     transposed_matrix = matrix_transpose(matrix2)
-    my_output = []
-    for row in range(len(matrix2)):
-        my_output.append(matrix_vector(matrix1, transposed_matrix[row]))
-    return my_output
+    return [
+        matrix_vector(matrix1, transposed_matrix[row])
+        for row in range(len(matrix2))
+    ]
 
 def identity_matrix(matrix):
     """ Identity Matrix must be square, returns 1 on same x and y, else 0 """

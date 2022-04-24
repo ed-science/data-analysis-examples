@@ -60,7 +60,7 @@ class KMeans():
     def _check_test_data(self, X):
         n_samples, n_features = X.shape
         expected_n_features = self.cluster_centers_.shape[1]
-        if not n_features == expected_n_features:
+        if n_features != expected_n_features:
             raise ValueError("Incorrect number of features. "
                              "Got %d features, expected %d" % (
                                  n_features, expected_n_features))

@@ -8,10 +8,35 @@ DB_DATABASE = '<input database name>'
 DB_UID = '<input user id>'
 DB_PWD ='<input password>'
 
-pyodbc_connection = ('DRIVER=' + DB_DRIVER + ';'
-        + 'SERVER=' + DB_SERVER + ';'
-        + 'DATABASE=' + DB_DATABASE + ';'
-        + 'UID=' + DB_UID +  ';' +'PWD=' + DB_PWD)
+pyodbc_connection = (
+    (
+        (
+            (
+                (
+                    (
+                        (
+                            (
+                                (
+                                    (f'DRIVER={DB_DRIVER};' + 'SERVER=')
+                                    + DB_SERVER
+                                )
+                                + ';'
+                            )
+                            + 'DATABASE='
+                        )
+                        + DB_DATABASE
+                    )
+                    + ';'
+                )
+                + 'UID='
+            )
+            + DB_UID
+        )
+        + ';'
+    )
+    + 'PWD='
+) + DB_PWD
+
 #print pyodbc_connection
 
 
@@ -26,7 +51,11 @@ filematch = '*.csv'
 ### SQLAlchemy Engine Settings ###
 DB_DRIVER_SQLAlchemy = 'mssql'
 
-sqlalchemy_connection = (DB_DRIVER_SQLAlchemy + '://'
-	    + DB_UID + ":" + DB_PWD + "@" + DB_SERVER + "/" + DB_DATABASE 
-        )
+sqlalchemy_connection = (
+    (
+        ((((f'{DB_DRIVER_SQLAlchemy}://' + DB_UID) + ":") + DB_PWD) + "@")
+        + DB_SERVER
+    )
+    + "/"
+) + DB_DATABASE
 #print sqlalchemy_connection

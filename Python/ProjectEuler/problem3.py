@@ -25,22 +25,18 @@ Solve the following problem (show me, don't just tell me)
 
 #First attempt, just made a list of prime numbers, out of memory on large numbers
 def get_prime(number):
-	primenumbers=[]
-	for index in range(2, number):
-		if(number%index == 0):
-			primenumbers.append(index)
-	return primenumbers
+	return [index for index in range(2, number) if (number%index == 0)]
 
 #Solution for returning largest prime factor of a number
 def fund_theorem(number):
-    counter=2 #Smallest prime number
-    largestfactor=0 #Holds largest prime factor
-    while(counter <= number): #Go through all the numbers
-        if(number%counter==0): #If the number has no remainder
-            number = number/counter #We can factor out this counter (since we know there's a distinct prime factor)
-            largestfactor=counter #sets current largest prime factor
-        counter = counter+1 #will set the counter up 1 so we can see if it's the next prime factor
-    return largestfactor
+	counter=2 #Smallest prime number
+	largestfactor=0 #Holds largest prime factor
+	while (counter <= number): #Go through all the numbers
+		if(number%counter==0): #If the number has no remainder
+		    number = number/counter #We can factor out this counter (since we know there's a distinct prime factor)
+		    largestfactor=counter #sets current largest prime factor
+		counter += 1
+	return largestfactor
 
 if __name__ == "__main__":
     

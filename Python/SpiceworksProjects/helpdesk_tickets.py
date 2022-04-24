@@ -1,6 +1,7 @@
 """
     Calculate number of tickets open and closed (with source being a csv file)
 """
+
 # pylint: disable=I0001,C0103,W0141
 
 
@@ -13,7 +14,7 @@ import pandas  # For dataframes
 from pandas.tseries.offsets import *  # For Bday (Business Days) utility
 
 # Specify directories
-ORIGINAL_DIRECTORY = str(r'C:\Users\wliu\Desktop\Spiceworks\Original')
+ORIGINAL_DIRECTORY = 'C:\\Users\\wliu\\Desktop\\Spiceworks\\Original'
 os.chdir(ORIGINAL_DIRECTORY)  # Change Local directory (where files go to)
 FILENAME = 'myexport.csv'
 
